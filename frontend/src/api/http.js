@@ -20,7 +20,6 @@ api.interceptors.response.use(
   (err) => {
     if (err.response?.status === 401) {
       const auth = useAuthStore()
-      // 登录刚写入的 token 立刻 401 时仍清掉，表现为「登得上又被踢回登录」
       auth.logout()
       if (router.currentRoute.value?.name !== 'login') {
         router.push({ name: 'login' })
